@@ -18,7 +18,7 @@ public class Contato {
 	private Integer id;
 	private String nome;
 	private String email;
-	private Integer telefone;
+	private String telefone;
 	private Integer tipo;
 	private Date data;
 	private Integer usuario_id;

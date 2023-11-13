@@ -1,11 +1,23 @@
 package br.com.will.controller;
 
+import javax.servlet.http.HttpServletRequest;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
+
+import br.com.will.dtos.UsuarioDTO;
+import br.com.will.entities.Contato;
+import br.com.will.entities.Usuario;
+import br.com.will.repositories.ContatoRepository;
 
 @Controller
 public class CadastrarContatoController {
+	
+	@Autowired
+	ContatoRepository contatoRepository;
 	
 	@RequestMapping (value = "/admin/cadastrar-contato")
 	
@@ -15,6 +27,39 @@ public class CadastrarContatoController {
 	
 		return modelAndView;
 		
+	}
+	
+	@RequestMapping(value = "/admin/cadastrar-contato-post", method = RequestMethod.POST)
+	public ModelAndView cadastrarContatoPost (HttpServletRequest request){
+		ModelAndView modelAndView = new ModelAndView("admin/cadastrar-contato");
+
+		try {
+			
+			Contato contato = new Contato();
+			contato.setUsuario(new Usuario());
+			
+			contato.setNome(request.getParameter("nome"));
+			contato.setEmail(request.getParameter("email"));
+			contato.setTelefone(request.getParameter("telefone"));
+			contato.setTipo(Integer.parseInt(request.getParameter("tipo")));
+			
+			UsuarioDTO usuarioDTO = (UsuarioDTO) request.getSession().getAttribute("usuario_auth");
+			
+			contato.getUsuario().setId(usuarioDTO.getId());
+			
+			contatoRepository.create(contato);
+			
+			modelAndView.addObject("mensagem_sucesso", "Contato cadastrado.");
+			
+		} catch (Exception e) {
+			
+			modelAndView.addObject("mensagem_erro", "Erro: " + e.getMessage());
+			
+		}
+		
+		
+		return modelAndView;
+	
 	}
 
 }

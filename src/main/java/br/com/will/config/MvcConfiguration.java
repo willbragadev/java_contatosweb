@@ -8,10 +8,12 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.web.servlet.ViewResolver;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
+import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
+import br.com.will.cache.CacheControl;
 import br.com.will.repositories.ContatoRepository;
 import br.com.will.repositories.UsuarioRepository;
 
@@ -55,5 +57,10 @@ public class MvcConfiguration extends WebMvcConfigurerAdapter{
 	public ContatoRepository getContatoRepository() {
 		return new ContatoRepository(getDataSource());
 	}
+	
+	@Override
+	public void addInterceptors(InterceptorRegistry registry) {
+		registry.addInterceptor(new CacheControl());
+		}
 	
 }

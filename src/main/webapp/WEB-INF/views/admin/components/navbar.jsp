@@ -23,7 +23,7 @@
                         <li><a class="dropdown-item" href="#">Minha Conta</a></li>
                         <li><hr class="dropdown-divider"></li>
                         <li>
-                        	<a class="dropdown-item" href="#" 
+                        	<a class="dropdown-item" href="/java_contatosweb/logout" 
                         		onclick="return confirm('Deseja realmente sair do sistema?');">
                         		Sair do Sistema
                         	</a>
