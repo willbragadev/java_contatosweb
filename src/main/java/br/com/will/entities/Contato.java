@@ -17,10 +17,12 @@ public class Contato {
 	
 	private Integer id;
 	private String nome;
+	private String sobrenome;
 	private String email;
 	private String telefone;
 	private Integer tipo;
-	private Date data;
+	private Date aniversario;
+	private String endereco;
 	private Integer usuario_id;
 	private Usuario usuario;
 

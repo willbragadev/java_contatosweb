@@ -5,13 +5,38 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>Criação de conta</title>
+<link rel="icon" type="image/x-icon" href="./resources/images/favicon.png">
+<link href="resources/css/bootstrap.min.css" rel="stylesheet">
 
 <style>
 label.error { color: #d9534f; }
 input.error { border: 2px solid #d9534f; }
+        body {
+	background: linear-gradient(45deg, #449CD7, #642AD3);
+	height: 100vh;	
+	margin: 0; 
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	color: white; 
+	font-size: 16px;
+        }
+      
+      }
+
+.btn-create {
+	background-color: #449cd7;
+	color: white;
+}
+
+.btn-create:hover {
+	background-color: #5951d4;
+	color: #ffffff;
+}
+      
 </style>
 
-<link href="resources/css/bootstrap.min.css" rel="stylesheet">
+
 </head>
 <body>
 
@@ -45,7 +70,7 @@ input.error { border: 2px solid #d9534f; }
                                 <input type="password" class="form-control" id="confirmarSenha" name="confirmarSenha" placeholder="Confirme sua senha">
                             </div>
                              
-                            <button type="submit" class="btn btn-primary">Criar Conta</button>
+                            <button type="submit" class="btn btn-create">Criar Conta</button>
                             <a class="btn btn-outline-info" href="/java_contatosweb/" role="button">Voltar para tela inicial</a>
                           
                         </form>

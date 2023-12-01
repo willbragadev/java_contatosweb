@@ -11,6 +11,7 @@ import org.springframework.jdbc.core.RowMapper;
 
 import br.com.will.entities.Usuario;
 
+
 public class UsuarioRepository {
 		
 	private JdbcTemplate jdbcTemplate;

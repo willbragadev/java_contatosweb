@@ -32,7 +32,7 @@ public class EditarContatoController {
 			
 			Contato contato = contatoRepository.findById(id);
 			
-			if(contato != null && contato.getUsuario().getId() == usuarioDTO.getId()) {
+			if(contato != null) {
 				
 				modelAndView.addObject("id", contato.getId());
 				modelAndView.addObject("nome", contato.getNome());
@@ -41,7 +41,7 @@ public class EditarContatoController {
 				modelAndView.addObject("tipo", contato.getTipo());
 				
 			} else {
-				modelAndView.setViewName("redirect:/admin/consultar-contatos");
+				modelAndView.setViewName("redirect:/admin/consultar-contato");
 			}
 			
 		} catch (Exception e) {
@@ -55,7 +55,7 @@ public class EditarContatoController {
 	@RequestMapping(value = "/admin/editar-contato-post", method = RequestMethod.POST)
 
 	public ModelAndView editarContatoPost(HttpServletRequest request) {
-		ModelAndView modelAndView = new ModelAndView("admin/consultar-contato");
+		ModelAndView modelAndView = new ModelAndView("admin/dashboard");
 		
 		try {
 			

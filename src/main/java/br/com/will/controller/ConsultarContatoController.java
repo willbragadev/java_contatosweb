@@ -20,20 +20,41 @@ public class ConsultarContatoController {
 	@Autowired
 	ContatoRepository contatoRepository;
 
-	@RequestMapping(value = "/admin/consultar-contato")
+	@RequestMapping(value = "/admin/consultar-contato" , method = RequestMethod.GET)
 
-	public ModelAndView consultarContato() {
+	public ModelAndView consultarContato(HttpServletRequest request) {
+	    ModelAndView modelAndView = new ModelAndView("admin/consultar-contato");
 
-		ModelAndView modelAndView = new ModelAndView("/admin/consultar-contato");
+		try {
+			
+			UsuarioDTO usuarioDTO = (UsuarioDTO)
+					request.getSession().getAttribute("usuario_auth");
+			
+	        List<Contato> contatos = contatoRepository.findAllById(usuarioDTO.getId());
+			
+	        if (!contatos.isEmpty()) {
+				
+	            modelAndView.addObject("listagem_contatos" , contatos);
 
-		return modelAndView;
-
+				
+			} else {
+				
+				 modelAndView.addObject("listagem_contatos" , contatos);
+				 
+			}
+			
+		} catch (Exception e) {
+		modelAndView.addObject("mensagem_erro", e.getMessage());
+	}
+		
+	return modelAndView;
+	
 	}
 
 	@RequestMapping(value = "/admin/consultar-contato-post", method = RequestMethod.POST)
 	public ModelAndView consultarContatoPost(HttpServletRequest request) {
 	    ModelAndView modelAndView = new ModelAndView("admin/consultar-contato");
-	    try {
+	    try { 
 	        String nome = request.getParameter("nome");
 	        
 	        UsuarioDTO usuarioDTO = (UsuarioDTO) request.getSession().getAttribute("usuario_auth");

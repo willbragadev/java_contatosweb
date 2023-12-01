@@ -20,7 +20,7 @@ public class ApagarContatoController {
 	@RequestMapping(value = "/admin/apagar-contato")
 	public ModelAndView apagarContato(HttpServletRequest request) throws Exception {
 		
-		ModelAndView modelAndView = new ModelAndView("admin/consultar-contato");
+		ModelAndView modelAndView = new ModelAndView("redirect:/admin/dashboard");
 		
 		try {
 			
@@ -30,7 +30,7 @@ public class ApagarContatoController {
 			
 			Contato contato = contatoRepository.findById(id);
 			
-			if(contato != null && contato.getUsuario().getId() == usuarioDTO.getId()) {
+			if(contato != null) {
 				
 				contatoRepository.delete(id);
 				

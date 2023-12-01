@@ -1,5 +1,7 @@
 package br.com.will.controller;
 
+import java.text.SimpleDateFormat;
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,9 +41,12 @@ public class CadastrarContatoController {
 			contato.setUsuario(new Usuario());
 			
 			contato.setNome(request.getParameter("nome"));
+			contato.setSobrenome(request.getParameter("sobrenome"));
 			contato.setEmail(request.getParameter("email"));
 			contato.setTelefone(request.getParameter("telefone"));
 			contato.setTipo(Integer.parseInt(request.getParameter("tipo")));
+			contato.setAniversario(new SimpleDateFormat("yyyy-MM-dd").parse(request.getParameter("aniversario")));
+			contato.setEndereco(request.getParameter("endereco"));
 			
 			UsuarioDTO usuarioDTO = (UsuarioDTO) request.getSession().getAttribute("usuario_auth");
 			
